@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/create/create",
+    "pages/battle/battle"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#b34fd1",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "心有灵犀",
+    "backgroundColor": "#f6f4ff",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

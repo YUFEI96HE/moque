@@ -1,0 +1,66 @@
+<!-- 答题模式 -->
+<view class="page" wx:if="{{mode === 'answer'}}">
+  <view class="battle-head">
+    <view class="battle-from">来自 <b>{{fromName}}</b> 的默契考验 · 共 {{total}} 题</view>
+    <view class="battle-progress"><b>{{now}}</b> / {{total}}</view>
+  </view>
+  <view class="progress-track"><view class="progress-bar" style="width: {{pct}}%"></view></view>
+
+  <view class="card q-card">
+    <view class="q-text">{{qText}}</view>
+    <button
+      wx:for="{{qOpts}}"
+      wx:key="index"
+      wx:for-item="opt"
+      wx:for-index="oi"
+      class="q-opt"
+      bindtap="pick"
+      data-i="{{oi}}"
+    >{{opt}}</button>
+  </view>
+</view>
+
+<!-- 战报模式 -->
+<view class="page" wx:if="{{mode === 'result'}}">
+  <view class="score-hero">
+    <view class="score-row">
+      <text class="score-num">{{score}}</text><text class="score-pct">%</text>
+    </view>
+    <view class="verdict-emoji">{{emoji}}</view>
+    <view class="verdict-title">{{title}}</view>
+    <view class="verdict-sub">{{sub}}（答对 {{hit}}/{{totalN}}）</view>
+  </view>
+
+  <view class="sec-title">{{isOwner ? '🔍 对方的答案对照' : '🔍 逐题对照'}}</view>
+  <view class="card detail-item" wx:for="{{detail}}" wx:key="label">
+    <view class="d-q">
+      <view class="d-badge {{item.hit ? 'hit' : 'miss'}}">{{item.hit ? '✓' : '✗'}}</view>
+      <view class="d-text">{{item.text}}</view>
+    </view>
+    <view class="d-answers">
+      <view class="d-ans {{item.hit ? 'hit' : 'miss'}}">
+        <view class="d-who">{{item.aName}}</view>
+        <view>{{item.aText}}</view>
+      </view>
+      <view class="d-ans {{item.hit ? 'hit' : 'miss'}}">
+        <view class="d-who">{{item.bName}}</view>
+        <view>{{item.bText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="result-actions">
+    <button class="btn-primary act-btn" open-type="share">📤 把战报分享出去</button>
+    <button class="btn-ghost act-btn" bindtap="goCreate">🔮 我也要出题考人</button>
+  </view>
+</view>
+
+<!-- 错误 -->
+<view class="page" wx:if="{{mode === 'error'}}">
+  <view class="err-box">
+    <view class="err-emoji">😢</view>
+    <view class="err-title">挑战已失效或链接不完整</view>
+    <view class="err-tip">让出题人重新生成一个发给你吧</view>
+    <button class="btn-primary err-btn" bindtap="goHome">回到首页</button>
+  </view>
+</view>

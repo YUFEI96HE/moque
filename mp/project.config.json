@@ -1,0 +1,19 @@
+{
+  "description": "心有灵犀 · 默契大挑战",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.8.12",
+  "appid": "touristappid",
+  "projectname": "xin-you-ling-xi",
+  "condition": {}
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="description" content="心有灵犀 · 默契大挑战——一人出题，一人作答，当场揭晓你们有多默契">
+  <title>心有灵犀 · 默契大挑战</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+</head>
+<body>
+  <div id="app" class="app">
+
+    <!-- ========== 首页 ========== -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <div class="hero-deco">✨</div>
+        <div class="hero-deco d2">💕</div>
+        <div class="hero-deco d3">✨</div>
+        <h1 class="hero-title">心有灵犀</h1>
+        <p class="hero-sub">一人出题 · 一人作答 · 当场揭晓你们有多默契</p>
+        <div class="hero-actions">
+          <button id="btn-go-create" class="btn btn-primary btn-big">🔮 我要出题</button>
+          <button id="btn-how" class="btn btn-ghost">玩法说明</button>
+        </div>
+      </div>
+
+      <div id="how-box" class="how card hidden">
+        <h3>🎈 怎么玩</h3>
+        <ol>
+          <li>出题人挑选 <b>5 道题</b>（题库或自定义），写下自己的答案；</li>
+          <li>生成挑战链接，发给那个「TA」；</li>
+          <li>对方作答完毕，<b>当场</b>生成默契度战报；</li>
+          <li>对方把战报分享回来，出题人看逐题对照。</li>
+        </ol>
+        <p class="how-tip">答案全部藏在链接里，无服务器、无注册，纯粹开心 ✨</p>
+      </div>
+
+      <div id="recent-box" class="recent hidden">
+        <h3 class="sec-title">📜 最近战报</h3>
+        <div id="recent-list"></div>
+      </div>
+
+      <p class="foot">心有灵犀一点通 · 李商隐诚不我欺</p>
+    </section>
+
+    <!-- ========== 出题页 ========== -->
+    <section id="view-create" class="view hidden">
+      <header class="topbar">
+        <button class="btn-back" id="btn-create-back">←</button>
+        <h2>出题 · 默契考验</h2>
+      </header>
+
+      <div class="card name-card">
+        <label class="lbl" for="creator-name">你的称呼（会出现在挑战卡上）</label>
+        <input id="creator-name" class="input" type="text" maxlength="12" placeholder="比如：最懂TA的人">
+      </div>
+
+      <div class="cat-tabs" id="cat-tabs"></div>
+
+      <div id="q-list"></div>
+
+      <div class="card custom-card" id="custom-card">
+        <h3>✍️ 自定义题（可选）</h3>
+        <input id="custom-q" class="input" type="text" maxlength="40" placeholder="写一个只有你们懂的问题">
+        <div class="custom-opts">
+          <input class="input opt" maxlength="12" placeholder="选项A">
+          <input class="input opt" maxlength="12" placeholder="选项B">
+          <input class="input opt" maxlength="12" placeholder="选项C">
+          <input class="input opt" maxlength="12" placeholder="选项D">
+        </div>
+        <button id="btn-add-custom" class="btn btn-ghost btn-sm">＋ 添加为第 6 题之外的候选</button>
+      </div>
+
+      <div class="sticky-bar">
+        <div class="picked-count">已选 <b id="picked-count">0</b>/5</div>
+        <button id="btn-make" class="btn btn-primary" disabled>生成挑战</button>
+      </div>
+    </section>
+
+    <!-- ========== 挑战页（答题 / 战报） ========== -->
+    <section id="view-battle" class="view hidden">
+      <!-- 答题模式 -->
+      <div id="battle-answer" class="hidden">
+        <header class="battle-head">
+          <p class="battle-from" id="battle-from"></p>
+          <p class="battle-progress"><b id="q-now">1</b> / <span id="q-total">5</span></p>
+        </header>
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+        <div class="card q-card">
+          <h2 id="q-text" class="q-text"></h2>
+          <div id="q-opts" class="q-opts"></div>
+        </div>
+      </div>
+
+      <!-- 战报模式 -->
+      <div id="battle-result" class="hidden">
+        <div class="score-hero">
+          <div class="score-ring">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" class="ring-bg"/>
+              <circle cx="60" cy="60" r="52" class="ring-fg" id="ring-fg"/>
+            </svg>
+            <div class="score-num"><b id="score-num">0</b><span>%</span></div>
+          </div>
+          <div class="verdict">
+            <div class="verdict-emoji" id="verdict-emoji"></div>
+            <h2 class="verdict-title" id="verdict-title"></h2>
+            <p class="verdict-sub" id="verdict-sub"></p>
+          </div>
+        </div>
+        <h3 class="sec-title" id="detail-title">🔍 逐题对照</h3>
+        <div id="detail-list"></div>
+        <div class="result-actions">
+          <button id="btn-share-result" class="btn btn-primary btn-big">📤 把战报回给出题人</button>
+          <button id="btn-again" class="btn btn-ghost">我也要出题考人</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="modal" class="modal hidden">
+    <div class="modal-box card">
+      <h3 id="modal-title"></h3>
+      <p id="modal-body"></p>
+      <div id="modal-link-row" class="hidden">
+        <textarea id="modal-link" readonly rows="3"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn btn-ghost btn-sm">取消</button>
+        <button id="modal-ok" class="btn btn-primary btn-sm">复制链接</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
