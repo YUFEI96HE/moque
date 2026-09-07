@@ -31,11 +31,16 @@
 .q-tag { font-size: 21rpx; color: var(--ink2); margin-top: 6rpx; }
 
 .ans-opts {
-  margin-top: 22rpx; display: flex; flex-wrap: wrap; gap: 14rpx;
-  border-top: 2rpx dashed #eee9f8; padding-top: 22rpx;
+  margin-top: 22rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 2rpx dashed #eee9f8;
+  padding-top: 22rpx;
 }
 .ans-opt {
-  width: calc(50% - 7rpx);
+  width: 49%;
+  margin-bottom: 14rpx;
   border: 3rpx solid #eee9f8; border-radius: 18rpx;
   padding: 16rpx 8rpx; font-size: 25rpx;
   text-align: center; color: #4a4658; background: #faf8ff;
@@ -45,8 +50,8 @@
 .ans-opt.on { border-color: #ff6b9d; background: #fff0f6; color: #e0337c; font-weight: 600; }
 
 .custom-title { font-size: 28rpx; font-weight: 700; margin-bottom: 18rpx; }
-.custom-opts { display: flex; flex-wrap: wrap; gap: 14rpx; margin-top: 16rpx; }
-.custom-opts .input { width: calc(50% - 7rpx); box-sizing: border-box; }
+.custom-opts { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 16rpx; }
+.custom-opts .input { width: 49%; margin-bottom: 14rpx; }
 .custom-add { margin-top: 20rpx; font-size: 26rpx; padding: 6rpx 0; width: 100%; }
 
 .bottom-space { height: 180rpx; }

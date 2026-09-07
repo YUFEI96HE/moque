@@ -43,9 +43,9 @@
 .d-badge.miss { background: #d9d2ea; }
 .d-text { font-size: 27rpx; font-weight: 600; line-height: 1.5; flex: 1; }
 
-.d-answers { display: flex; flex-wrap: wrap; gap: 14rpx; margin-top: 18rpx; }
+.d-answers { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 18rpx; }
 .d-ans {
-  width: calc(50% - 7rpx); border-radius: 18rpx; padding: 14rpx 18rpx;
+  width: 49%; border-radius: 18rpx; padding: 14rpx 18rpx;
   font-size: 24rpx; line-height: 1.5; box-sizing: border-box;
 }
 .d-who { font-size: 20rpx; opacity: 0.75; margin-bottom: 4rpx; }
